@@ -1,0 +1,165 @@
+% SUDA_Courge_Project_Courge_Project
+\documentclass[UTF8]{ctexart}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{appendix}
+\usepackage{bm, amsmath,amsfonts}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{placeins}
+% \usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\tcbuselibrary{most}
+\tcbuselibrary{skins, breakable, theorems}
+
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=2.54cm]{geometry}
+\renewcommand{\contentsname}{\zihao{3} 目\quad 录}
+\renewcommand{\abstractname}{\zihao{3} 摘\quad 要}
+
+\counterwithin{figure}{section}
+
+\makeatletter
+\renewcommand{\thefigure}{\ifnum \c@section>\z@ \thesection-\fi \@arabic\c@figure}%章节与图片编号关联
+\renewcommand{\thetable}{\ifnum \c@section>\z@ \thesection-\fi \@arabic\c@table}%章节与表格编号关联
+\makeatother
+
+\newtcolorbox{mybox}[2][]{colbacktitle=red!10!white, colback=blue!10!white,coltitle=red!70!black, title={#2},fonttitle=\bfseries,#1}
+
+\newtcbtheorem{question}{题~(理}%
+  {enhanced, breakable,
+    colback = white, colframe = cyan, colbacktitle = cyan,
+    attach boxed title to top left = {yshift = -2mm, xshift = 5mm},
+    boxed title style = {sharp corners},
+    fonttitle = \sffamily\bfseries, separator sign = {).~}}{qst}
+
+ \newtcbtheorem[number within=section]{mytheo}{定理}%
+  {colback=red!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\lstdefinelanguage{HTML5}{
+    sensitive=true,
+    keywords={%
+    % JavaScript
+    typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,
+    % HTML
+    html, title, meta, style, head, body, script, canvas,
+    % CSS
+    border:, transform:, -moz-transform:, transition-duration:, transition-property:,
+    transition-timing-function:
+    },
+    % http://texblog.org/tag/otherkeywords/
+    otherkeywords={<, >, \/},   
+    ndkeywords={class, export, boolean, throw, implements, import, this},   
+    comment=[l]{//},
+    % morecomment=[s][keywordstyle]{<}{>},  
+    morecomment=[s]{/*}{*/},
+    morecomment=[s]{<!}{>},
+    morestring=[b]',
+    morestring=[b]",    
+    alsoletter={-},
+    alsodigit={:}
+}
+
+% \ctexset{
+%     % 修改 section。
+%     section={ 
+%     name={,、}
+%         number={\arabic{section}},
+%         format=\heiti\centering\zihao{3} % 设置 section 标题为黑体、居中对齐、3号字
+%     },
+%     % 修改 subsection。
+%     subsection={
+%     name={,、}
+%         number={\arabic{subsection}},
+%         format=\heiti\zihao{-3} % 设置 subsection 标题为黑体、5号字
+%     },
+%     % 修改 subsubsection。
+%     % subsubsection={
+%     % name={,、}
+%     %     number={\arabic{subsubsection}},
+%     %     format=\fangsong\zihao{-3} % 设置 subsection 标题为黑体、5号字
+%     % }
+% } 
+
+%页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\chead{\songti\zihao{-5}{~宁波工程学院理学院学年论文~}}
+
+%目录页设置
+\titlecontents{section}[0em]{\zihao{4}\bf }{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+\titlecontents{subsection}[2em]{\vspace{0.1\baselineskip}\zihao{-4}}{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+\titlecontents{subsubsection}[4em]{\vspace{0.1\baselineskip}\zihao{-4}}{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+%代码设置
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+	numbers=left,  
+	frame=tb,
+	aboveskip=2mm,
+	belowskip=2mm,
+    breaklines=true,                 % automatic line breaking only at whitespace
+	showstringspaces=false,
+	columns=flexible,
+	framerule=1pt,
+	rulecolor=\color{gray!35},
+	backgroundcolor=\color{gray!5},  % choose the background color
+	basicstyle={\small},
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},       % keyword style
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+    escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+}
+%------------------------------------------------------------------------
+%正文部分
+\setlength{\headheight}{13pt}
+\pagenumbering{Roman}
+\begin{document}
+\zihao{-4}
+\include{Chapters/Cover}
+
+\include{Chapters/Abstract}
+
+\tableofcontents
+% \thispagestyle{empty}   目录页面的页眉
+
+%\tableofcontents
+
+
+% 第一章节、绪论
+\include{Chapters/Chapter1}
+
+% 第二章节、引言
+\include{Chapters/Chapter2}
+
+% 第三章节、主体
+\include{Chapters/Chapter3}
+
+% 第四章节
+\include{Chapters/Chapter4}
+
+% 第五章节
+\include{Chapters/Chapter5}
+
+% 第六章节-附录
+\include{Chapters/Appendices}
+
+% 参考文献
+\bibliographystyle{unsrt}
+\bibliography{Chapters/reference}
+\end{document}
